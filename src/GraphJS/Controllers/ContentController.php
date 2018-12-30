@@ -118,7 +118,7 @@ class ContentController extends AbstractController
             $this->fail($response, "Url or ID required.");
             return;
         }
-        $i = $kernel->gs()->node($id);  
+        
         if(isset($data["url"])&&!empty($data["url"]))  {
             $page = $this->_fromUrlToNode($kernel, $data["url"]);
         }
