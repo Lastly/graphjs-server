@@ -161,15 +161,18 @@ class ContentController extends AbstractController
         }
         $i = $kernel->gs()->node($id); 
         if(isset($data["url"])&&!empty($data["url"]))  {
+            error_log("in url");
             $page = $this->_fromUrlToNode($kernel, $data["url"]);
             
         }
         else {
+            error_log("in id");
             $page = $kernel->gs()->node($data["id"]);
             if(!$page instanceof Page && !$page instanceof Blog) {
                 return $this->fail($response, "Can only comment on Blog or Web Page.");
             }
         }
+        error_log("about to comment");
         $comment = $i->comment(
             $page, 
             $data["content"], 
@@ -179,6 +182,7 @@ class ContentController extends AbstractController
                 $kernel->graph()->getCommentsModerated() === true // it's not moderated
             )
         );
+        error_log("comment succeeded");
         $this->succeed($response, ["comment_id"=>$comment->id()->toString()]);
     }
 
