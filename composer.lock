@@ -1251,12 +1251,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pho-recipes/Network.git",
-                "reference": "7bddece9d584abac00dc0be3833dd39bb0518e3c"
+                "reference": "949927f2b7b8fc090219ca4ef5d93e642f2c264d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pho-recipes/Network/zipball/7bddece9d584abac00dc0be3833dd39bb0518e3c",
-                "reference": "7bddece9d584abac00dc0be3833dd39bb0518e3c",
+                "url": "https://api.github.com/repos/pho-recipes/Network/zipball/949927f2b7b8fc090219ca4ef5d93e642f2c264d",
+                "reference": "949927f2b7b8fc090219ca4ef5d93e642f2c264d",
                 "shasum": ""
             },
             "require": {
@@ -1281,7 +1281,7 @@
             ],
             "description": "A social network graph in Pho (made for Grou.ps v2)",
             "homepage": "https://phonetworks.org",
-            "time": "2018-12-14T09:44:49+00:00"
+            "time": "2018-12-30T10:24:57+00:00"
         },
         {
             "name": "phonetworks/pho-framework",
@@ -3737,7 +3737,7 @@
                 "symfony/yaml": ">=2,<2.0.22|>=2.1,<2.1.7",
                 "tecnickcom/tcpdf": "<6.2.22",
                 "thelia/backoffice-default-template": ">=2.1,<2.1.2",
-                "thelia/thelia": ">=2.1,<2.1.2|>=2.1.0-beta1,<2.1.3",
+                "thelia/thelia": ">=2.1.0-beta1,<2.1.3|>=2.1,<2.1.2",
                 "theonedemon/phpwhois": "<=4.2.5",
                 "titon/framework": ">=0,<9.9.99",
                 "truckersmp/phpwhois": "<=4.3.1",
@@ -3795,7 +3795,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2018-12-30T08:17:20+00:00"
+            "time": "2018-12-30T10:21:53+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
