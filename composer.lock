@@ -1251,12 +1251,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pho-recipes/Network.git",
-                "reference": "949927f2b7b8fc090219ca4ef5d93e642f2c264d"
+                "reference": "0879f86df93ed940e963ea8ba0ed524c4ab29578"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pho-recipes/Network/zipball/949927f2b7b8fc090219ca4ef5d93e642f2c264d",
-                "reference": "949927f2b7b8fc090219ca4ef5d93e642f2c264d",
+                "url": "https://api.github.com/repos/pho-recipes/Network/zipball/0879f86df93ed940e963ea8ba0ed524c4ab29578",
+                "reference": "0879f86df93ed940e963ea8ba0ed524c4ab29578",
                 "shasum": ""
             },
             "require": {
@@ -1281,7 +1281,7 @@
             ],
             "description": "A social network graph in Pho (made for Grou.ps v2)",
             "homepage": "https://phonetworks.org",
-            "time": "2018-12-30T10:24:57+00:00"
+            "time": "2018-12-30T10:38:52+00:00"
         },
         {
             "name": "phonetworks/pho-framework",
