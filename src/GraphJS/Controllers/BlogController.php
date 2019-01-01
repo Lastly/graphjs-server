@@ -53,7 +53,8 @@ class BlogController extends AbstractController
                     : $thing->getComments();
                 $comment_count = (string) count($comments);
                 $author = $thing->getAuthor();
-                if(!$author instanceof User) {
+                if(!($author instanceof User)) {
+                    continue;
                     if(!is_array($author)) {
                         continue;
                     }
