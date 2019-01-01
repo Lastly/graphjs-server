@@ -52,6 +52,13 @@ class BlogController extends AbstractController
                     })
                     : $thing->getComments();
                 $comment_count = (string) count($comments);
+                $author = $thing->getAuthor();
+                if(!$author instanceof User) {
+                    if(!is_array($author)) {
+                        continue;
+                    }
+                    $author = $author[0];
+                }
                 //eval(\Psy\sh());
                 $blogs[] = [
                     "id" => (string) $thing->id(),
