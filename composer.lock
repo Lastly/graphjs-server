@@ -1441,12 +1441,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phonetworks/pho-microkernel.git",
-                "reference": "ced969dfb22d92384c9c917d36f59221755c9d6b"
+                "reference": "f3c714c4517a8ac28a24b8431f70f0bd4e196092"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phonetworks/pho-microkernel/zipball/ced969dfb22d92384c9c917d36f59221755c9d6b",
-                "reference": "ced969dfb22d92384c9c917d36f59221755c9d6b",
+                "url": "https://api.github.com/repos/phonetworks/pho-microkernel/zipball/f3c714c4517a8ac28a24b8431f70f0bd4e196092",
+                "reference": "f3c714c4517a8ac28a24b8431f70f0bd4e196092",
                 "shasum": ""
             },
             "require": {
@@ -1490,7 +1490,7 @@
             ],
             "description": "Social-Enabled App Infrastructure",
             "homepage": "https://phonetworks.org",
-            "time": "2019-01-20T12:03:08+00:00"
+            "time": "2019-01-20T12:18:50+00:00"
         },
         {
             "name": "phonetworks/pho-plugins-feeds",
