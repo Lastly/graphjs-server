@@ -300,7 +300,8 @@ class AuthenticationController extends AbstractController
 
         $redis_password_reminder = 1; //getenv("PASSWORD_REMINDER_ON_REDIS");
         if($redis_password_reminder==1) {
-            $pins = $kernel->database()->get("password-reminder-".md5($data["email"]));
+            $pins = [];
+            $pins[0] = $kernel->database()->get("password-reminder-".md5($data["email"]));
         }
         else{
             $pins = explode(":", trim(file_get_contents(getenv("PASSWORD_REMINDER").md5($data["email"]))));
