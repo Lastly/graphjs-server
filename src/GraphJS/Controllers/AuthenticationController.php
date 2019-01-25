@@ -256,7 +256,7 @@ class AuthenticationController extends AbstractController
         }
     }
 
-    public function reset(Request $request, Response $response)
+    public function reset(Request $request, Response $response, Kernel $kernel)
     {
         $data = $request->getQueryParams();
         $validation = $this->validator->validate($data, [
@@ -268,7 +268,13 @@ class AuthenticationController extends AbstractController
         }
         // check if email exists ?
         $pin = mt_rand(100000, 999999);
-        file_put_contents(getenv("PASSWORD_REMINDER").md5($data["email"]), "{$pin}:".time()."\n", LOCK_EX);
+        $redis_password_reminder = getenv("PASSWORD_REMINDER_ON_REDIS");
+        if(true||$redis_password_reminder==1) {
+            $kernel->database()->setex("password-reminder-".md5($data["email"]), $pin, 60*60);
+        }
+        else{
+            file_put_contents(getenv("PASSWORD_REMINDER").md5($data["email"]), "{$pin}:".time()."\n", LOCK_EX);
+        }
         $mgClient = new Mailgun(getenv("MAILGUN_KEY")); 
         $mgClient->sendMessage(getenv("MAILGUN_DOMAIN"),
             array('from'    => 'GROU.PS <postmaster@client.gr.ps>',
@@ -290,10 +296,18 @@ class AuthenticationController extends AbstractController
             $this->fail($response, "Valid email and code required.");
             return;
         }
-        $pins = explode(":", trim(file_get_contents(getenv("PASSWORD_REMINDER").md5($data["email"]))));
+
+        $redis_password_reminder = 1; //getenv("PASSWORD_REMINDER_ON_REDIS");
+        if($redis_password_reminder==1) {
+            $pins = $kernel->database()->get("password-reminder-".md5($data["email"]));
+        }
+        else{
+            $pins = explode(":", trim(file_get_contents(getenv("PASSWORD_REMINDER").md5($data["email"]))));
+        }
+
         //error_log(print_r($pins, true));
         if($pins[0]==$data["code"]) {
-            if((int) $pins[1]<time()-7*60) {
+            if($redis_password_reminder!=1 && (int) $pins[1]<time()-7*60) {
                 $this->fail($response, "Expired.");
                 return;
             }
@@ -315,6 +329,7 @@ class AuthenticationController extends AbstractController
          
          
             $this->succeed($response);
+            return;
         }
         $this->fail($response, "Code does not match.");
     }
