@@ -2,7 +2,7 @@
     "name": "GraphJS-Server",
     "description": "Serving GraphJS",
     "repository": "https://github.com/phonetworks/graphjs-server",
-    "addons": ["cloudcube", "mailgun"],
+    "addons": ["cloudcube"],
     "formation": {
         "web": {
             "quantity": 1,
