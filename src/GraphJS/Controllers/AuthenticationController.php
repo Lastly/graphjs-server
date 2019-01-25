@@ -270,7 +270,12 @@ class AuthenticationController extends AbstractController
         $pin = mt_rand(100000, 999999);
         $redis_password_reminder = getenv("PASSWORD_REMINDER_ON_REDIS");
         if(true||$redis_password_reminder==1) {
+<<<<<<< HEAD
             $kernel->database()->setex("password-reminder-".md5($data["email"]), $pin, 60*60);
+=======
+            $kernel->database()->set("password-reminder-".md5($data["email"]), $pin);
+            $kernel->database()->expire("password-reminder-".md5($data["email"]), 60*60);
+>>>>>>> e56d0e6... password reset bugfix
         }
         else{
             file_put_contents(getenv("PASSWORD_REMINDER").md5($data["email"]), "{$pin}:".time()."\n", LOCK_EX);
