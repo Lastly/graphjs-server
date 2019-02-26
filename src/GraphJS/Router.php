@@ -145,6 +145,7 @@ class Router extends \Pho\Server\Rest\Router
         self::initBlog(...\func_get_args());
         self::initNotifications(...\func_get_args());
         self::initAdministration(...\func_get_args());
+        self::initFileUpload(...\func_get_args());
 
         $server->get('', function(Request $request, Response $response) {
             $response
@@ -621,6 +622,16 @@ class Router extends \Pho\Server\Rest\Router
             'listMembers', function (Request $request, Response $response) use ($controllers, $kernel) {
                 $controllers["group"]->listMembers($request, $response, $kernel);
             }
+        );
+    }
+
+    protected function initFileUpload(Server $server, array $controllers, Kernel $kernel)
+    {
+        $session = self::$session;
+        $server->post(
+            'uploadFile', function (Request $request, Response $response) use ($controllers, $session, $kernel) {
+                $controllers["fileupload"]->upload($request, $response, $session, $kernel);
+        }
         );
     }
 } 
