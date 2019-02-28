@@ -149,10 +149,7 @@ class Router extends \Pho\Server\Rest\Router
                         $response->addHeader("Access-Control-Allow-Origin", $origin[0]); 
                     }
                 }
-<<<<<<< HEAD
-=======
                 error_log("request method: ". $request->getMethod());
->>>>>>> 5023f1c... fix placement of NotFound listener (#64)
                 $next();
             }
         );
