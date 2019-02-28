@@ -65,39 +65,7 @@ class Router extends \Pho\Server\Rest\Router
     public static function init2(Server $server, array $controllers, Kernel $kernel, string $cors): void
     {
         
-        $server->on('NotFound', function($request, $response) {
-            if("options"==strtolower($request->getMethod())) {
-                error_log("options request");
-                $response->addHeader('Access-Control-Allow-Methods', join(',', [
-                    'GET',
-                    'POST',
-                    'PUT',
-                    'DELETE',
-                    'OPTIONS',
-                    'PATCH',
-                    'HEAD',
-                ]));
-                $response->addHeader('Access-Control-Allow-Headers', join(',', [
-                    'Origin',
-                    'X-Requested-With',
-                    'Content-Type',
-                    'Accept',
-                    'Authorization',
-                ]));
-                $response->addHeader('Access-Control-Allow-Credentials', 'true');
-                $origin = $request->getHeader("origin");
-                $response
-                    ->addHeader("Access-Control-Allow-Origin", $origin[0])
-                    ->setStatus(200)
-                    ->end();
-            }
-            else {
-                $response
-                    ->setStatus(404)
-                    ->write('Not found')
-                    ->end();
-            }
-        });
+        
 
         $server->use(
             function (Request $request, Response $response, $next) use ($kernel, $cors) {
@@ -150,6 +118,39 @@ class Router extends \Pho\Server\Rest\Router
                     }
                 }
                 error_log("request method: ". $request->getMethod());
+                $server->on('NotFound', function($request, $response) {
+                    if("options"==strtolower($request->getMethod())) {
+                        error_log("options request");
+                        $response->addHeader('Access-Control-Allow-Methods', join(',', [
+                            'GET',
+                            'POST',
+                            'PUT',
+                            'DELETE',
+                            'OPTIONS',
+                            'PATCH',
+                            'HEAD',
+                        ]));
+                        $response->addHeader('Access-Control-Allow-Headers', join(',', [
+                            'Origin',
+                            'X-Requested-With',
+                            'Content-Type',
+                            'Accept',
+                            'Authorization',
+                        ]));
+                        $response->addHeader('Access-Control-Allow-Credentials', 'true');
+                        $origin = $request->getHeader("origin");
+                        $response
+                            ->addHeader("Access-Control-Allow-Origin", $origin[0])
+                            ->setStatus(200)
+                            ->end();
+                    }
+                    else {
+                        $response
+                            ->setStatus(404)
+                            ->write('Not found')
+                            ->end();
+                    }
+                });
                 $next();
             }
         );
