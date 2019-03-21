@@ -2,13 +2,7 @@
     "name": "GraphJS-Server",
     "description": "Serving GraphJS",
     "repository": "https://github.com/phonetworks/graphjs-server",
-    "addons": ["cloudcube"],
-    "formation": {
-        "web": {
-            "quantity": 1,
-            "size": "hobby"
-        }
-    },
+    "addons": ["rediscloud", "graphenedb", "cloudcube", "mailgun", "stream"],
     "env": {
           "PASSWORD_REMINDER": {
               "value": "/tmp/pins/"
